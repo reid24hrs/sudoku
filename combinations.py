@@ -2,6 +2,8 @@
 # n digits in the set n E {1-9} where each n digit does not repeat 
 # that add up to the total s
 
+from sets import Set
+
 def combinations():
    
    import itertools as iter
@@ -15,7 +17,8 @@ def combinations():
    # create the matrix of combinations of n digits
    
    combinations = list(iter.combinations(x, n))
-   # print(combinations)
+#   print("Combinations: ")
+#   print(combinations)
    
    solutions = [] # create an empty list to append valid solutions
 
@@ -23,12 +26,26 @@ def combinations():
       if sum(combinations[i]) == s:
          solutions.append(combinations[i]) 
    
+   print("The solutions are: ")
    print(solutions)
+
+   print("The number of solutions is: ")
+   print(len(solutions))
+
+   # create the empty set called digits to add any of the digits contained in the combinations
+   digits = Set([])
+
+   for i in range(len(solutions)):
+      candidate = solutions[i]
+      for j in range(len(candidate)):
+         if (candidate[j] not in digits):
+            digits.add(candidate[j])
+
+   print("Digits: ")
+   print(digits)
 
 # main part of the programme
 loop = "y"
 while loop == "y":
    combinations()
    loop = raw_input("Enter y to try again: ")
-
-
